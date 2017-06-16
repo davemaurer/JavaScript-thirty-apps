@@ -58,7 +58,15 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  window.addEventListener('keydown', function(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio) return; // break out of the function if there is no element on the DOM for the key that was pressed.
+    audio.currentTime = 0; // rewind to the start if a key is pressed again while audio is still playing.
+    audio.play();
+    key.classList.add('playing'); // this is the same as doing the line directly below
+    // key.className += ' playing';
+  });
 </script>
 
 
