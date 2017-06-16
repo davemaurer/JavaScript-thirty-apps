@@ -67,6 +67,14 @@
     key.classList.add('playing'); // this is the same as doing the line directly below
     // key.className += ' playing';
   });
+
+  function removeTransition(e) {
+    if(e.propertyName !== 'transform') return; // do nothing until the transform property is added to the element
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 </script>
 
 
